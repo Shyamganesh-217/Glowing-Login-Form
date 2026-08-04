@@ -1,0 +1,218 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic-Login-form</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+        background: linear-gradient(-45deg, #00c6ff, #0072ff, #7b2ff7, #ff0080);
+        background-size: 400% 400%;
+        animation: bg 10s infinite;
+      }
+
+      @keyframes bg {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .login-box {
+        width: 380px;
+        padding: 35px;
+        /* background-color: white;  */
+        /* OR USE - background: White;*/
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        border-radius: 25px;
+        box-shadow:
+          0 0 20px cyan,
+          0 0 40px rgba(0, 255, 255, 0.8);
+        animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+
+        50% {
+          transform: translateY(18px);
+        }
+
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .login-box h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 38px;
+        background: linear-gradient(rgb(236, 232, 234), rgb(221, 10, 147));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .login-box input {
+        width: 100%;
+        padding: 13px;
+        margin-top: 10px;
+        border: 2px solid white;
+        border-radius: 10px;
+        color: black;
+        font-size: 16px;
+        outline: none;
+        transition: 0.3s;
+      }
+
+      .login-box input::placeholder {
+        color: red;
+      }
+
+      .login-box input:focus {
+        border-color: cyan;
+        box-shadow:
+          0 0 10px cyan,
+          0 0 20px cyan;
+      }
+
+      .password-box {
+        position: relative;
+      }
+
+      .password-box span {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 20px;
+        color: darkorange;
+      }
+
+      button {
+        width: 100%;
+        padding: 13px;
+        margin-top: 40px;
+        background: linear-gradient(45deg, #ff0080, #7b2ff7);
+        border: none;
+        border-radius: 25px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+
+        box-shadow:
+          0 0 10px cyan,
+          0 0 20px cyan,
+          0 0 40px cyan;
+      }
+
+      p {
+        margin-top: 20px;
+        text-align: center;
+        color: white;
+      }
+
+      a {
+        color: yellow;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 420px) {
+        .login-box {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box">
+      <h2>Login</h2>
+      <form>
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          placeholder="username"
+          name="username"
+          required
+          minlength="4"
+          maxlength="20"
+          pattern="[A-Za-z0-9_]{4,20}"
+          title="4-20 characters. Letters, numbers and underscore only."
+          autocomplete="username"
+        />
+        <label for="password">Password</label>
+        <div class="password-box">
+          <input
+            type="text"
+            id="password"
+            placeholder="password"
+            required
+            minlength="8"
+            maxlength="20"
+            pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,20}"
+            title="Must contain uppercase, lowercase, number, special character and be 8-20 characters long."
+            autocomplete="current-password"
+          />
+          <span onclick="TogglePassword()">👁</span>
+        </div>
+        <button type="submit">Login</button>
+        <p>
+          Don't have an account?
+          <a href="#Register">Register</a>
+        </p>
+      </form>
+    </div>
+
+    <script>
+      function TogglePassword() {
+        let pass = document.getElementById("password");
+        if (pass.type === "password") {
+          pass.type = "text";
+        } else {
+          pass.type = "password";
+        }
+      }
+    </script>
+  </body>
+</html>
